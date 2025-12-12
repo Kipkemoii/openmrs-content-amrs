@@ -3,6 +3,7 @@
     "description": "Clinical Encounter",
     "version": "1.0",
     "uuid": "070b40ea-60ea-4024-946c-7544718ca0f1",
+    "processor": "EncounterFormProcessor",
     "published": true,
     "retired": false, 
     "encounterType": "8a43b09b-2d9f-487c-a1c3-d6bf220671a7",
