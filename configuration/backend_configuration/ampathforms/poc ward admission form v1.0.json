@@ -1,5 +1,5 @@
 {
-  "name": "Ward Admission",
+  "name": "POC Ward Admission Form v1.0",
   "pages": [
     {
       "label": "Ward Request",
@@ -34,12 +34,12 @@
                 },
                 {
                   "id": "admitToLocation",
-                  "type": "obs",
+                  "type": "encounterLocation",
                   "required": true,
                   "questionOptions": {
                     "rendering": "ui-select-extended",
                     "required": true,
-                    "concept": "b9cd9e47-da43-4a46-8f3c-e30ec9209cc7",
+                    
                     "datasource": {
                       "name": "location_datasource",
                       "config": {
@@ -56,8 +56,8 @@
     }
   ],
   "processor": "EncounterFormProcessor",
-  "encounter": "TRANSFERREQUEST",
-  "encounterType": "b2c4d5e6-7f8a-4e9b-8c1d-2e3f8e4a3b8f",
+  "encounter": "ADMISSION",
+  "encounterType": "e22e39fd-7db2-45e7-80f1-60fa0d5a4378",
   "referencedForms": [],
   "uuid": "xxxx",
   "description": "Create an admission request to an inpatient ward",
