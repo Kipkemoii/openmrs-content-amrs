@@ -1,2 +1,3 @@
 Uuid,Privilege name,Description,_order:1000
 226b62b1-deac-4e2a-8e89-4f66c9a19423, O3 Implementer Tools, Allows access to the O3 Implementer Tools features,
+53b2f66a-8158-4e10-8bfa-11547cc59f26,View OrderTemplates,Able to view OrderTemplates,
