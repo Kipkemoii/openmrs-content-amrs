@@ -1,0 +1,860 @@
+{
+  "name": "POC Family Planning Encounter Form v1.1",
+  "description": "Family Planning Form",
+  "version": "1.1",
+  "published": true,
+  "uuid": "",
+  "retired": false,
+  "encounter": "FPSCREENING",
+  "encounterType": "a8ab57df-a539-4a37-9eba-8f9ebd96809e",
+  "pages": [
+    {
+      "label": "Visit Details",
+      "sections": [
+        {
+          "label": "Encounter Details",
+          "isExpanded": "true",
+          "questions": [
+            {
+              "label": "Date:",
+              "type": "encounterDatetime",
+              "required": "true",
+              "questionOptions": {
+                "rendering": "date",
+                "allowFutureDates": "false"
+              },
+              "id": "encDate"
+            },
+            {
+              "label": "Provider:",
+              "type": "encounterProvider",
+              "required": "true",
+              "questionOptions": {
+                "rendering": "ui-select-extended"
+              },
+              "id": "encProvider "
+            },
+            {
+              "label": "Location:",
+              "type": "encounterLocation",
+              "required": "true",
+              "questionOptions": {
+                "rendering": "ui-select-extended"
+              },
+              "id": "encLocation"
+            }
+          ]
+        },
+        {
+          "label": "Client History",
+          "isExpanded": "true",
+          "questions": [
+            {
+              "label": "Client type:",
+              "type": "obs",
+              "required": "true",
+              "id": "clientType",
+              "questionOptions": {
+                "rendering": "select",
+                "concept": "a89eea66-1350-11df-a1f1-0026b9348838",
+                "answers": [
+                  {
+                    "concept": "5c1e610c-36f4-456c-be9b-11c106591f7f",
+                    "label": "New"
+                  },
+                  {
+                    "concept": "a8a4812e-1350-11df-a1f1-0026b9348838",
+                    "label": "Revisit"
+                  }
+                ]
+              },
+              "validators": [],
+              "hide": {
+                "hideWhenExpression": "age < 15"
+              }
+            },
+            {
+              "label": "Pregnancy/breastfeeding status:",
+              "type": "obs",
+              "required": "true",
+              "id": "pregnancyBreastfeedingStatus",
+              "questionOptions": {
+                "rendering": "select",
+                "concept": "6b4f1d00-0a27-41dd-a299-fb7dc730819c",
+                "answers": [
+                  {
+                    "concept": "a89d109c-1350-11df-a1f1-0026b9348838",
+                    "label": "Pregnant"
+                  },
+                  {
+                    "concept": "a8a18208-1350-11df-a1f1-0026b9348838",
+                    "label": "Breastfeeding"
+                  },
+                  {
+                    "concept": "aa9895bc-1971-4926-b7a3-67b5fba1b2d5",
+                    "label": "Not pregnant"
+                  },
+                  {
+                    "concept": "a899b50a-1350-11df-a1f1-0026b9348838",
+                    "label": "Unknown"
+                  }
+                ]
+              },
+              "validators": [],
+              "hide": {
+                "hideWhenExpression": "age < 15"
+              }
+            },
+            {
+              "label": "LMP:",
+              "type": "obs",
+              "required": "true",
+              "id": "lmp",
+              "questionOptions": {
+                "rendering": "date",
+                "concept": "a89ff758-1350-11df-a1f1-0026b9348838"
+              },
+              "validators": [
+                {
+                  "type": "date",
+                  "allowFutureDates": "false"
+                }
+              ],
+              "hide": {
+                "hideWhenExpression": "isEmpty(pregnancyBreastfeedingStatus) || age < 15 || pregnancyBreastfeedingStatus === 'a89d109c-1350-11df-a1f1-0026b9348838'"
+              }
+            }
+          ]
+        },
+
+        {
+          "label": "Family Planning",
+          "isExpanded": "true",
+          "questions": [
+            {
+              "label": "First ever user of contraceptive:",
+              "type": "obs",
+              "required": "true",
+              "id": "firstEverUser",
+              "questionOptions": {
+                "rendering": "select",
+                "concept": "774961c6-232f-4332-8a9f-f5c55ebe86d0",
+
+                "answers": [
+                  {
+                    "concept": "a899b35c-1350-11df-a1f1-0026b9348838",
+                    "label": "Yes"
+                  },
+                  {
+                    "concept": "a899b42e-1350-11df-a1f1-0026b9348838",
+                    "label": "No"
+                  }
+                ]
+              },
+              "validators": [],
+              "hide": {
+                "hideWhenExpression": "age < 15"
+              }
+            },
+            {
+              "label": "Counselled on family planning?",
+              "type": "obs",
+              "required": "true",
+              "id": "counselledOnFamilyPlanning",
+              "questionOptions": {
+                "rendering": "select",
+                "concept": "5b68f24c-7443-4d94-982b-658bddd7dbb5",
+
+                "answers": [
+                  {
+                    "concept": "a899b35c-1350-11df-a1f1-0026b9348838",
+                    "label": "Yes"
+                  },
+                  {
+                    "concept": "a899b42e-1350-11df-a1f1-0026b9348838",
+                    "label": "No"
+                  }
+                ]
+              },
+              "validators": [],
+              "hide": {
+                "hideWhenExpression": "age < 15"
+              }
+            },
+            {
+              "label": "Contraceptive dispensed at this visit?",
+              "type": "obs",
+              "required": "true",
+              "id": "contraceptiveDispensedF",
+              "questionOptions": {
+                "rendering": "select",
+                "concept": "a894b1cc-1350-11df-a1f1-0026b9348838",
+                "answers": [
+                  {
+                    "concept": "a123d949-31f3-4abf-98e3-8504e17ebc00",
+                    "label": "3-year implant"
+                  },
+                  {
+                    "concept": "feb48308-a56f-4754-8e8f-8c1698e570cb",
+                    "label": "5-year implant"
+                  },
+                  
+                  {
+                    "concept": "a8a71330-1350-11df-a1f1-0026b9348838",
+                    "label": "Injectables (Depo)"
+                  },
+
+                  {
+                    "concept": "4a740e33-fee5-4a2b-b679-1904722e3d9e",
+                    "label": "Lactation method"
+                  },
+                  {
+                    "concept": "a8aff1b2-1350-11df-a1f1-0026b9348838",
+                    "label": "Combined oral contraceptive pills (Cycles)"
+                  },
+                  {
+                    "concept": "a8afeb54-1350-11df-a1f1-0026b9348838",
+                    "label": "Progestrone only pills (cycles)"
+                  },
+                  {
+                    "concept": "b75702a6-908d-491b-9399-6495712c81cc",
+                    "label": "Emergency contraceptive pills (Doses)"
+                  },
+                  {
+                    "concept": "a8a714c0-1350-11df-a1f1-0026b9348838",
+                    "label": "Rhythm method"
+                  },
+                  {
+                    "concept": "a8a713f8-1350-11df-a1f1-0026b9348838",
+                    "label": "Bilateral tubal ligation"
+                  },
+                  
+                  {
+                    "concept": "1934d7dd-7a59-43f0-8b6b-29e736498f15",
+                    "label": "Female condom"
+                  },
+                  {
+                    "concept": "236dba53-1062-46b4-8067-ec8711897dbf",
+                    "label": "IUD hormonal (Sets)"
+                  },
+                  {
+                    "concept": "a8a71330-1350-11df-a1f1-0026b9348838",
+                    "label": "IUD non hormonal (Sets)"
+                  },
+                  {
+                    "concept": "eaa5796d-0b1c-478b-8c9d-d23cf4c3bddc",
+                    "label": "Vasectomy (partner)"
+                  },
+                  {
+                    "concept": "a8aaf3e2-1350-11df-a1f1-0026b9348838",
+                    "label": "Other"
+                  }
+                ]
+              },
+              "validators": [],
+              "hide": {
+                "hideWhenExpression": "age < 15 || sex !== 'F'"
+              }
+            },
+            {
+              "label": "Contraceptive dispensed at this visit?",
+              "type": "obs",
+              "required": "true",
+              "id": "contraceptiveDispensedM",
+              "historicalExpression": "HD.getObject('prevEnc').getValue('a894b1cc-1350-11df-a1f1-0026b9348838')",
+              "questionOptions": {
+                "rendering": "select",
+                "concept": "a894b1cc-1350-11df-a1f1-0026b9348838",
+                "answers": [
+                  {
+                    "concept": "99573ebc-b11b-4f5d-866d-94c5feb28924",
+                    "label": "Male condom"
+                  },
+                  {
+                    "concept": "eaa5796d-0b1c-478b-8c9d-d23cf4c3bddc",
+                    "label": "Vasectomy"
+                  },
+                  {
+                    "concept": "a8aaf3e2-1350-11df-a1f1-0026b9348838",
+                    "label": "Others"
+                  }
+                ]
+              },
+              "validators": [],
+              "hide": {
+                "hideWhenExpression": "age < 15 || sex !== 'M'"
+              }
+            },
+            {
+              "label": "Specify other male contraceptives:",
+              "type": "obs",
+              "id": "specifyOtherMaleContraceptives",
+              "questionOptions": {
+                "concept": "26080ade-d566-4e06-a21b-17d0091f4924",
+                "rendering": "textarea"
+              },
+              "hide": {
+                "hideWhenExpression": "isEmpty(contraceptiveDispensedM) || contraceptiveDispensedM !== 'a8aaf3e2-1350-11df-a1f1-0026b9348838'"
+              }
+            },
+            {
+              "label": "Type of visit for method:",
+              "type": "obs",
+              "required": "true",
+              "id": "typeOfVisitForMethod1",
+              "questionOptions": {
+                "rendering": "select",
+                "concept": "244b67bf-da2d-4009-9bc9-91a52a92defe",
+                "answers": [
+                  {
+                    "concept": "5c1e610c-36f4-456c-be9b-11c106591f7f",
+                    "label": "New"
+                  },
+                  {
+                    "concept": "a8a4812e-1350-11df-a1f1-0026b9348838",
+                    "label": "Re-visit"
+                  }
+                ]
+              },
+              "validators": [],
+              "hide": {
+                "hideWhenExpression": "isEmpty(contraceptiveDispensedF) || age < 15 || contraceptiveDispensedF === 'a8aff1b2-1350-11df-a1f1-0026b9348838' || contraceptiveDispensedF === 'feb48308-a56f-4754-8e8f-8c1698e570cb' || contraceptiveDispensedF === 'a123d949-31f3-4abf-98e3-8504e17ebc00' || contraceptiveDispensedF === 'a8a71330-1350-11df-a1f1-0026b9348838' || contraceptiveDispensedF === '236dba53-1062-46b4-8067-ec8711897dbf' || contraceptiveDispensedF === 'a8a713f8-1350-11df-a1f1-0026b9348838' || contraceptiveDispensedF === 'eaa5796d-0b1c-478b-8c9d-d23cf4c3bddc' || contraceptiveDispensedM === 'eaa5796d-0b1c-478b-8c9d-d23cf4c3bddc'"
+              }
+            },
+            {
+              "label": "Type of visit for method:",
+              "type": "obs",
+              "required": "true",
+              "id": "typeOfVisitForMethod2",
+              "questionOptions": {
+                "rendering": "select",
+                "concept": "c221ff83-92fa-4980-94df-de2d85045950",
+                "answers": [
+                  {
+                    "concept": "c3ed398c-eb30-43a4-8737-8ee3995daf7f",
+                    "label": "1st time insertion"
+                  },
+                  {
+                    "concept": "dd3aa98a-2230-4bfb-aabb-6be9a00ace87",
+                    "label": "Removal"
+                  },
+                  {
+                    "concept": "9ee34e6b-b9ed-4306-b41f-476406895a4a",
+                    "label": "Re-insertion"
+                  },
+                  {
+                    "concept": "a8a4812e-1350-11df-a1f1-0026b9348838",
+                    "label": "Check-up"
+                  }
+                ]
+              },
+              "validators": [],
+              "hide": {
+                "hideWhenExpression": "isEmpty(contraceptiveDispensedF) || age < 15 || sex !== 'F' || contraceptiveDispensedF !== 'a8a71330-1350-11df-a1f1-0026b9348838' && contraceptiveDispensedF !== '236dba53-1062-46b4-8067-ec8711897dbf' && contraceptiveDispensedF !== 'a123d949-31f3-4abf-98e3-8504e17ebc00' && contraceptiveDispensedF !== 'feb48308-a56f-4754-8e8f-8c1698e570cb'"
+              }
+            },
+            {
+              "label": "Quantity dispensed:",
+              "type": "obs",
+              "required": "true",
+              "id": "quantityDispensed",
+              "questionOptions": {
+                "rendering": "number",
+                "concept": "a89f0dde-1350-11df-a1f1-0026b9348838"
+                
+                
+              },
+              "validators": [],
+              "hide": {
+                "hideWhenExpression": " age < 15 || contraceptiveDispensedF === 'eaa5796d-0b1c-478b-8c9d-d23cf4c3bddc' || contraceptiveDispensedF === 'a8a713f8-1350-11df-a1f1-0026b9348838' || contraceptiveDispensedM === 'eaa5796d-0b1c-478b-8c9d-d23cf4c3bddc'"
+              }
+            },
+            {
+              "label": "Reasons for LARC removal:",
+              "type": "obs",
+              "required": false,
+              "id": "reasonsForLarcRemoval",
+              "questionOptions": {
+                "rendering": "select",
+                "concept": "9313b80f-9eca-4186-8f45-38da8eaa5417",
+                "answers": [
+                  {
+                    "concept": "a89c1ef8-1350-11df-a1f1-0026b9348838",
+                    "label": "Maturity"
+                  },
+                  {
+                    "concept": "9c1066e2-74f6-47ec-8873-0507434c4d25",
+                    "label": "Desire to get pregnant"
+                  },
+                  {
+                    "concept": "a89de2d8-1350-11df-a1f1-0026b9348838",
+                    "label": "Health corncens/side effects"
+                  },
+                  {
+                    "concept": "54551201-548b-40a8-a5ac-18cdc4c2fb92",
+                    "label": "Method switch"
+                  },
+                  {
+                    "concept": "04dfb521-9532-45ed-b269-d231ca60891c",
+                    "label": "Method failure"
+                  },
+                  {
+                    "concept": "a8aaf3e2-1350-11df-a1f1-0026b9348838",
+                    "label": "Others(Specify)"
+                  }
+                ]
+              },
+              "validators": [],
+              "hide": {
+                "hideWhenExpression": "isEmpty(typeOfVisitForMethod2) || !arrayContains(typeOfVisitForMethod2, 'dd3aa98a-2230-4bfb-aabb-6be9a00ace87') || sex !== 'F' || age < 15"
+              }
+            },
+            {
+              "label": "Specify:",
+              "type": "obs",
+              "required": "true",
+              "id": "otherSpecify",
+              "questionOptions": {
+                "rendering": "text",
+                "concept": "a8a06fc6-1350-11df-a1f1-0026b9348838",
+               
+                "answers": []
+              },
+              "validators": [],
+              "hide": {
+                "hideWhenExpression": "reasonsForLarcRemoval !== 'a8aaf3e2-1350-11df-a1f1-0026b9348838'"
+              }
+            },
+            {
+              "label": "Counselled for natural FP?",
+              "type": "obs",
+              "required": "true",
+              "id": "counselledOnNaturalFp",
+              "questionOptions": {
+                "rendering": "select",
+                "concept": "cceba2d0-eba2-4c97-9517-3035d5f6dd5e",
+                "answers": [
+                  {
+                    "concept": "a899b35c-1350-11df-a1f1-0026b9348838",
+                    "label": "Yes"
+                  },
+                  {
+                    "concept": "a899b42e-1350-11df-a1f1-0026b9348838",
+                    "label": "No"
+                  }
+                ]
+              },
+              "validators": [],
+              "hide": {
+                "hideWhenExpression": "age < 15"
+              }
+            },
+            {
+              "label": "Circle beads given:",
+              "type": "obs",
+              "id": "circleBeadsGiven",
+              "questionOptions": {
+                "rendering": "select",
+                "concept": "9cd914b4-40e3-4c07-9d83-800ae212ac3c",
+                
+                "answers": [
+                  {
+                    "concept": "a899b35c-1350-11df-a1f1-0026b9348838",
+                    "label": "Yes"
+                  },
+                  {
+                    "concept": "a899b42e-1350-11df-a1f1-0026b9348838",
+                    "label": "No"
+                  }
+                ]
+              },
+              "validators": [],
+              "hide": {
+                "hideWhenExpression": "isEmpty(counselledOnNaturalFp) || counselledOnNaturalFp !== 'a899b35c-1350-11df-a1f1-0026b9348838' || sex !== 'F' || age < 15"
+              }
+            },
+            {
+              "label": "Client receiving postpartum FP?",
+              "type": "obs",
+              "id": "clientReceivingPostpartumFp",
+              "questionOptions": {
+                "rendering": "select",
+                "concept": "80733d16-c7e7-462d-b4f9-f2391c5c35ea",
+                "answers": [
+                  {
+                    "concept": "a77c0d06-d1a2-4c56-bf9a-eaf5aa388129",
+                    "label": "immediate post partum(< 48 hrs)"
+                  },
+                  {
+                    "concept": "d94aa153-b9e5-4118-a182-6e00beeefba8",
+                    "label": "post partum (> 48 hrs to 6 weeks)"
+                  },
+                  {
+                    "concept": "7723095c-825f-4c71-ab66-4bdc0a463ee5",
+                    "label": "post partum (more than 6 weeks and less than 12 months)"
+                  },
+                  {
+                    "concept": "8fd14559-353d-4b02-8b98-1b831ab13af1",
+                    "label": "post abortion (within 7 days)"
+                  }
+                ]
+              },
+              "validators": [],
+              "hide": {
+                "hideWhenExpression": "sex !== 'F' || age < 15"
+              }
+            },
+            {
+              "label": "TB screening status:",
+              "type": "obs",
+              "id": "tbScreeningStatus",
+              "questionOptions": {
+                "concept": "02ad9357-b996-4530-b1a4-aff91a105383",
+                "rendering": "select",
+                "answers": [
+                  {
+                    "concept": "6cd4f017-dae4-4b65-86ee-77074555feaa",
+                    "label": "Presumed TB"
+                  },
+                  {
+                    "concept": "f7dfdac3-65ee-487a-98f3-9f62693272a9",
+                    "label": "No TB signs"
+                  },
+                  {
+                    "concept": "a11755b3-3e5b-4429-a6dc-e3dbeff78a9e",
+                    "label": "On TB treatment"
+                  },
+                  {
+                    "concept": "a899ea48-1350-11df-a1f1-0026b9348838",
+                    "label": "Not done"
+                  }
+                ]
+              }
+            },
+            {
+              "label": "Counselled on HIV:",
+              "type": "obs",
+              "required": "true",
+              "id": "counselledOnHiv",
+              "questionOptions": {
+                "rendering": "select",
+                "concept": "a8a45032-1350-11df-a1f1-0026b9348838",
+                "conceptMappings": [],
+                "answers": [
+                  {
+                    "concept": "a899b35c-1350-11df-a1f1-0026b9348838",
+                    "label": "Yes"
+                  },
+                  {
+                    "concept": "a899b42e-1350-11df-a1f1-0026b9348838",
+                    "label": "No"
+                  }
+                ]
+              },
+              "validators": []
+            },
+            {
+              "label": "Counselled and tested:",
+              "type": "obs",
+              "required": "true",
+              "id": "counselledAndTested",
+              "questionOptions": {
+                "rendering": "select",
+                "concept": "71bb9660-cb25-48d0-ab90-2dc39df8e9ab",
+                "conceptMappings": [],
+                "answers": [
+                  {
+                    "concept": "a899b35c-1350-11df-a1f1-0026b9348838",
+                    "label": "Yes"
+                  },
+                  {
+                    "concept": "a899b42e-1350-11df-a1f1-0026b9348838",
+                    "label": "No"
+                  }
+                ]
+              },
+              "validators": []
+            },
+            {
+              "label": "HIV results:",
+              "type": "obs",
+              "required": "true",
+              "id": "hivResults",
+              "questionOptions": {
+                "rendering": "select",
+                "concept": "a89c6c64-1350-11df-a1f1-0026b9348838",
+                "conceptMappings": [],
+                "answers": [
+                  {
+                    "concept": "fa5a4dd8-60cd-4085-80b6-4aea76809926",
+                    "label": "Known positive"
+                  },
+                  {
+                    "concept": "a896f3a6-1350-11df-a1f1-0026b9348838",
+                    "label": "Positive"
+                  },
+                  {
+                    "concept": "a896d2cc-1350-11df-a1f1-0026b9348838",
+                    "label": "Negative"
+                  },
+                  {
+                    "concept": "a899b50a-1350-11df-a1f1-0026b9348838",
+                    "label": "Unknown"
+                  }
+                ]
+              },
+              "validators": [],
+              "hide": {
+                "hideWhenExpression": "counselledAndTested !== 'a899b35c-1350-11df-a1f1-0026b9348838'"
+              }
+            },
+            {
+              "label": "Linked to HIV care?",
+              "type": "obs",
+              "required": "true",
+              "id": "linkedToHivCare",
+              "questionOptions": {
+                "rendering": "select",
+                "concept": "2bf2a177-da8a-4033-8b7c-62577d0dc00c",
+                "conceptMappings": [],
+                "answers": [
+                   {
+                    "concept": "a899b35c-1350-11df-a1f1-0026b9348838",
+                    "label": "Yes"
+                  },
+                  {
+                    "concept": "a899b42e-1350-11df-a1f1-0026b9348838",
+                    "label": "No"
+                  }
+                ]
+              },
+              "validators": [],
+              "hide": {
+                "hideWhenExpression": "hivResults !== 'a896f3a6-1350-11df-a1f1-0026b9348838'"
+              }
+            },
+            {
+              "label": "PrEP screening:",
+              "type": "obs",
+              "required": "true",
+              "id": "prepScreening",
+              "questionOptions": {
+                "rendering": "select",
+                "concept": "b24e12a5-5a37-4f3e-9c55-58bb3a1f55e9",
+                "conceptMappings": [],
+                "answers": [
+                  {
+                    "concept": "a899b35c-1350-11df-a1f1-0026b9348838",
+                    "label": "Eligible"
+                  },
+                  {
+                    "concept": "a899b42e-1350-11df-a1f1-0026b9348838",
+                    "label": "Not eligible"
+                  }
+                ]
+              },
+              "validators": [],
+              "hide": {
+                "hideWhenExpression": "hivResults !== 'a896d2cc-1350-11df-a1f1-0026b9348838'"
+              }
+            },
+            {
+              "label": "Linked to prEP care:",
+              "type": "obs",
+              "required": "true",
+              "id": "linkedToPrepCare",
+              "questionOptions": {
+                "rendering": "select",
+                "concept": "d87c11f0-a81d-4796-90f7-899362cdc732",
+                "conceptMappings": [],
+                "answers": [
+                  {
+                    "concept": "a899b35c-1350-11df-a1f1-0026b9348838",
+                    "label": "Yes"
+                  },
+                  {
+                    "concept": "a899b42e-1350-11df-a1f1-0026b9348838",
+                    "label": "No"
+                  }
+                ]
+              },
+              "validators": [],
+              "hide": {
+                "hideWhenExpression": "prepScreening !== 'a899b35c-1350-11df-a1f1-0026b9348838'"
+              }
+            },
+            {
+              "label": "Experienced intimate partner violence/reproductive coertion:",
+              "type": "obs",
+              "required": "true",
+              "id": "experiencedIntimatePartner",
+              "questionOptions": {
+                "rendering": "select",
+                "concept": "02a5b950-53fa-4da8-b244-257b99cef73a",
+                "answers": [
+                  {
+                    "concept": "a54ea51a-08be-4d89-a7eb-d0b235764a1e",
+                    "label": "Intimate partner violence"
+                  },
+                  {
+                    "concept": "920709bc-dde6-4d21-863e-851e63c084e4",
+                    "label": "reproductive coertion"
+                  },
+                  {
+                    "concept": "a89ad3a4-1350-11df-a1f1-0026b9348838",
+                    "label": "Not Applicable"
+                  }
+                ]
+              },
+              "validators": [],
+              "hide": {
+                "hideWhenExpression": "age < 15"
+              }
+            },
+            {
+              "label": "Cervical cancer screening done?",
+              "type": "obs",
+              "required": "true",
+              "id": "cervicalCancerScreeningDone",
+              "questionOptions": {
+                "rendering": "select",
+                "concept": "3086a740-face-4fcd-825b-1e627a66c93a",
+                "answers": [
+                  {
+                    "concept": "a899b35c-1350-11df-a1f1-0026b9348838",
+                    "label": "Yes"
+                  },
+                  {
+                    "concept": "a899b42e-1350-11df-a1f1-0026b9348838",
+                    "label": "No"
+                  }
+                ]
+              },
+              "validators": [],
+              "alert": {
+                "alertWhenExpression": "myValue === 'a899b42e-1350-11df-a1f1-0026b9348838'",
+                "message": "Screen for Cervical Cancer"
+              }
+            },
+            {
+              "label": "Cervical cancer results:",
+              "type": "obs",
+              "required": "true",
+              "id": "cervicalCancerResults",
+              "questionOptions": {
+                "rendering": "select",
+                "concept": "6bad2971-c776-4f0e-ae15-a3fc0cbd7d0f",
+                "answers": [
+                  {
+                    "concept": "a899e7b4-1350-11df-a1f1-0026b9348838",
+                    "label": "Normal"
+                  },
+                  {
+                    "concept": "260e6d24-1634-4467-a070-e8359f6827f7",
+                    "label": "Suspected"
+                  },
+                  {
+                    "concept": "a8af9046-1350-11df-a1f1-0026b9348838",
+                    "label": "Confirmed"
+                  },
+                  {
+                    "concept": "a899ea48-1350-11df-a1f1-0026b9348838",
+                    "label": "Not done"
+                  }
+                ]
+              },
+              "validators": [],
+              "hide": {
+                "hideWhenExpression": "isEmpty(cervicalCancerScreeningDone) || cervicalCancerScreeningDone !== 'a899b35c-1350-11df-a1f1-0026b9348838' || sex !== 'F'"
+              }
+            },
+           {
+              "label": "Referred from:",
+              "id": "rfBy",
+              "type": "obs",
+              "questionOptions": {
+                "concept": "aad34924-d6e7-4138-a841-0fea9ee4b41f",
+                "rendering": "select",
+                "answers": [
+                  {
+                    "concept": "a89c25d8-1350-11df-a1f1-0026b9348838",
+                    "label": "Another health facility"
+                  },
+                  {
+                    "concept": "a8a00b4e-1350-11df-a1f1-0026b9348838",
+                    "label": "Community unit"
+                  },
+                  {
+                    "concept": "a89ad3a4-1350-11df-a1f1-0026b9348838",
+                    "label": "N/A"
+                  }
+                ]
+              },
+              "validators": []
+            },
+            {
+              "label": "Referred to:",
+              "id": "referralsTo",
+              "questionOptions": {
+                "concept": "6434322f-d050-4764-8c00-741e20c4c9e1",
+                "answers": [
+                  {
+                    "concept": "a89c25d8-1350-11df-a1f1-0026b9348838",
+                    "label": "Another health facility"
+                  },
+                  {
+                    "concept": "a8a00b4e-1350-11df-a1f1-0026b9348838",
+                    "label": "Community unit"
+                  },
+                  {
+                    "concept": "a89ad3a4-1350-11df-a1f1-0026b9348838",
+                    "label": "N/A"
+                  }
+                ],
+                "rendering": "multiCheckbox"
+              },
+              "type": "obs",
+              "validators": []
+            },
+            {
+              "label": "Reason for referral:",
+              "id": "reasonReferral",
+              "questionOptions": {
+                "concept": "2c8bb721-b642-428a-b956-7902242776ab",
+                "rendering": "text"
+              },
+              "type": "obs",
+              "validators": []
+            },
+           
+           
+            {
+              "label": "Referral to facility:",
+              "type": "obs",
+              "id": "transferToFacility",
+              "questionOptions": {
+                "concept": "2722deae-f4e6-42f4-8259-f7e47d425d61",
+                "rendering": "encounterLocation"
+              },
+              "hide": {
+                "hideWhenExpression": "referralTo !=='a89c25d8-1350-11df-a1f1-0026b9348838'"
+              }
+            },
+           
+            {
+              "label": "Remarks:",
+              "type": "obs",
+              "required": "false",
+              "id": "remarks",
+              "questionOptions": {
+                "rendering": "text",
+                "concept": "5e4dc798-2cce-4a1a-97e9-bcf22d64b07c"
+              },
+              "validators": []
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
